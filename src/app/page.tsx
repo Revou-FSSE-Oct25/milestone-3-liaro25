@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import ProductGrid from "@/components/ProductGrid";
 
 // Fetch product list from FakeStore API

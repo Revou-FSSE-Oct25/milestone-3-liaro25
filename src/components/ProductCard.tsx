@@ -1,13 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Product } from "@/types/products";
 
 // Props define the required data for a single product card
 // These values are passed from the ProductGrid component
-type ProductCardProps = {
+/* type ProductCardProps = {
   id: number;        // Unique product ID, used for routing to detail page
   title: string;     // Product name/title
   price: number;     // Product price (kept as number for calculations)
   image: string;     // Product image URL
+};*/
+
+type ProductCardProps = {
+  product: Product;
 };
 
 export default function ProductCard({

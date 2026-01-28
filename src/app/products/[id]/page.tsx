@@ -1,26 +1,15 @@
 import Image from "next/image";
+import type { Product } from "@/types/products";
 
 // Force this page to be rendered dynamically (SSR)
 // Prevents build-time data fetching that can fail on Vercel
 export const dynamic = "force-dynamic";
 
-// Product type definition (based on FakeStore API response)
-type Product = {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  image: string;
-  category: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-};
+type PageProps = { params: { id: string } };
 
 // Fetch a single product by ID on the SERVER
 // Uses no-store to ensure data is fetched per request (SSR)
-// Wrapped in try/catch to avoid crashing the build or request
+// Wrapped in try/catch to avoid crashing the request
 async function getProduct(id: string): Promise<Product | null> {
   try {
     const res = await fetch(`https://fakestoreapi.com/products/${id}`, {
@@ -39,11 +28,7 @@ async function getProduct(id: string): Promise<Product | null> {
 
 // Product Detail Page component
 // Receives dynamic route params from the URL (e.g. /products/1)
-export default async function ProductDetailPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default async function ProductDetailPage({ params }: PageProps) {
   // Fetch product data for the requested ID
   const product = await getProduct(params.id);
 

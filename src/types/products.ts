@@ -3,9 +3,9 @@ export interface Product {
   title: string;
   price: number;
   image: string;
-  category?: string;
+  category: string;
   description?: string;
-  rating?: {
+  rating: {
     rate: number;
     count: number;
   };

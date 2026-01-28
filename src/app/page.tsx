@@ -1,5 +1,7 @@
 export const dynamic = "force-dynamic";
+
 import ProductGrid from "@/components/ProductGrid";
+import CartBadge from "@/context/CartBadge";
 
 // Fetch product list from FakeStore API
 // This function runs on the SERVER (not in the browser)
@@ -29,6 +31,9 @@ export default async function HomePage() {
 
       {/* ProductGrid handles layout and mapping of product cards */}
       <ProductGrid products={products} />
+    {/* Floating cart indicator */}
+    <CartBadge />      
     </main>
+    
   );
 }

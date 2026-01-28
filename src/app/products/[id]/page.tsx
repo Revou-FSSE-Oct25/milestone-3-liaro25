@@ -1,5 +1,7 @@
 import Image from "next/image";
 import type { Product } from "@/types/products";
+import AddToCartButton from "../../../components/AddToCartButton";
+
 
 // Force this page to be rendered dynamically (SSR)
 // Prevents build-time data fetching that can fail on Vercel
@@ -65,7 +67,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
           <h1 className="mt-2 text-2xl font-bold">{product.title}</h1>
 
           <p className="mt-2 text-sm text-gray-600">
-            ⭐ {product.rating.rate} / 5 ({product.rating.count} reviews)
+            ⭐ {product.rating?.rate?? "-"} / 5 ({product.rating?.count?? "-"} reviews)
           </p>
 
           <p className="mt-4 text-2xl font-semibold">${product.price}</p>
@@ -74,13 +76,8 @@ export default async function ProductDetailPage({ params }: PageProps) {
             {product.description}
           </p>
 
-          {/* Placeholder action button (logic not implemented yet) */}
-          <button
-            type="button"
-            className="mt-8 w-full rounded-lg bg-black px-4 py-3 text-white hover:opacity-90 transition"
-          >
-            Add to Cart
-          </button>
+        {/* Client-side Add to Cart action */}
+<AddToCartButton product={product} />
         </div>
       </div>
     </main>

@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Text */
+  --foreground: #2b2b2b; /* darker for headings/brand */
+  --muted: #5b5b5b;
+
+  /* Pastel salem background palette */
+  --bg-a: #fff6f2; /* very light salem */
+  --bg-b: #ffeae1; /* pastel salem */
+  --bg-c: #fffaf7; /* warm off-white */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground: #f3f3f3;
+    --muted: #cfcfcf;
+
+    /* Dark-mode friendly salem-ish */
+    --bg-a: #141212;
+    --bg-b: #1c1411;
+    --bg-c: #0f0e0e;
+  }
+}
+
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+}
+
+body {
+  color: var(--foreground);
+  font-family: var(--font-poppins), system-ui, sans-serif;
+
+  background:
+    radial-gradient(900px 600px at 10% 10%, var(--bg-b), transparent 60%),
+    radial-gradient(900px 600px at 90% 20%, var(--bg-a), transparent 55%),
+    linear-gradient(180deg, var(--bg-c), var(--bg-a));
+}
+
+/* Optional: make gradient simpler on small screens */
+@media (max-width: 768px) {
+  body {
+    background:
+      radial-gradient(600px 400px at 20% 10%, var(--bg-b), transparent 65%),
+      linear-gradient(180deg, var(--bg-c), var(--bg-a));
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-muted {
+    color: var(--muted);
+  }
+}

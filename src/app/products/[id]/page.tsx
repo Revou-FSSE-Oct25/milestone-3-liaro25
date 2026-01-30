@@ -1,10 +1,9 @@
-import Header from "@/components/Header";
 import Image from "next/image";
-import Link from "next/link";
-import type { Product } from "@/types/product";
 import AddToCartButton from "@/components/AddToCartButton";
+import type { Product } from "@/types/product";
+import Header from "@/components/Header";
 
-type PageProps = {
+type Props = {
   params: { id: string };
 };
 
@@ -13,51 +12,43 @@ async function getProduct(id: string): Promise<Product> {
     cache: "no-store",
   });
 
+  if (!res.ok) throw new Error("Failed to fetch product");
   return res.json();
 }
 
-export default async function ProductDetailPage({ params }: PageProps) {
+export default async function ProductDetailPage({ params }: Props) {
   const product = await getProduct(params.id);
+
   const imageUrl = product.images?.[0] || "/placeholder.png";
 
   return (
     <>
-      <Header />
-      <main className="mx-auto max-w-6xl p-6">
-        <Link
-          href="/"
-          className="text-sm font-medium text-gray-600 hover:text-gray-900"
-        >
-          ← Back to Products
-        </Link>
-
-        <div className="mt-6 grid gap-6 lg:grid-cols-2">
-          <div className="relative aspect-square w-full overflow-hidden rounded-2xl border bg-white">
-            <Image
-              src={imageUrl}
-              alt={product.title} 
-              fill
-              className="object-cover"
-            />
-          </div>
-
-          <div className="rounded-2xl border bg-white p-6">
-
-            <h1 className="mt-2 text-2xl font-bold">{product.title}</h1>
-
-            <p className="mt-4 text-3xl font-extrabold">
-              ${product.price}
-            </p>
-
-            <p className="mt-4 text-gray-700">
-              {product.description}
-            </p>
-
-            <AddToCartButton product={product} />
-
-          </div>
+    <Header />
+    <main className="mx-auto max-w-4xl px-6 py-10">
+      <div className="grid gap-8 md:grid-cols-2">
+        <div className="relative aspect-square w-full overflow-hidden rounded-2xl border bg-white">
+          <Image
+            src={imageUrl}
+            alt={product.title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            unoptimized
+          />
         </div>
-      </main>
+
+        <div className="space-y-4">
+          <h1 className="text-2xl font-bold">{product.title}</h1>
+          <p className="text-xl font-semibold">${product.price}</p>
+
+          {product.description ? (
+            <p className="text-gray-600">{product.description}</p>
+          ) : null}
+
+          <AddToCartButton product={product} />
+        </div>
+      </div>
+    </main>
     </>
   );
 }

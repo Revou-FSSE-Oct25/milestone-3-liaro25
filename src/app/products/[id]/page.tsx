@@ -61,7 +61,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                   <AddToCartButton product={product} withQty />
 
                   <Link
-                    href="/"
+                    href="/products"
                     className="rounded-xl border px-5 py-3 text-sm font-semibold text-gray-900"
                   >
                     Back to Products

@@ -1,4 +1,4 @@
-// 1) Mock modules dulu (Jest hoists ini)
+// 1) Mock modules  (Jest hoists )
 jest.mock("@/lib/api", () => ({
   api: {
     get: jest.fn(),
@@ -16,11 +16,11 @@ jest.mock("next/server", () => ({
   },
 }));
 
-// 2) Baru import route handlers setelah mock siap
+// 2)  Import route handlers after mock ready
 import * as ProductsRoute from "../app/api/products/route";
 import * as ProductByIdRoute from "../app/api/products/[id]/route";
 
-// 3) Ambil api mock object dari module yang sudah dimock
+// 3) Import api mock object from module 
 import { api } from "@/lib/api";
 
 function makeReqJson(body: any) {

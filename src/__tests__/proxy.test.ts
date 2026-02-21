@@ -1,5 +1,4 @@
-import middleware from "../proxy"; // sesuaikan path kalau file beda nama
-import { NextResponse } from "next/server";
+import middleware from "../proxy"; 
 
 const redirectMock = jest.fn();
 const nextMock = jest.fn();

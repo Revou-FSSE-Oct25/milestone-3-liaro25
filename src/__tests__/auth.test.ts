@@ -19,7 +19,7 @@ jest.mock("../lib/session", () => ({
 
 describe("auth server actions", () => {
   beforeAll(() => {
-    // mute console.error supaya output test bersih
+    // mute console.error 
     jest.spyOn(console, "error").mockImplementation(() => {});
   });
 

@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import LoginForm from "../app/ui/login-form";
 
-// Mock server action module (kita nggak perlu panggil beneran)
+// Mock server action module
 jest.mock("@/app/actions/auth", () => ({
   __esModule: true,
   login: jest.fn(),

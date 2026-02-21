@@ -11,21 +11,30 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="text-center">
+      <div className="text-center max-w-xl">
         <h1 className="text-4xl font-bold mb-4">Welcome!</h1>
         <p className="text-lg mb-8">Please login to access your dashboard.</p>
 
-        <div className="flex gap-4 justify-center">
+        <div className="flex gap-4 justify-center flex-wrap">
           <Link
             href="/login"
             className="bg-blue-600 text-white px-6 py-3 rounded-md"
           >
             Login
           </Link>
+
           <Link href="/products" className="border px-6 py-3 rounded-md">
             Browse Products
           </Link>
+
+          <Link href="/news" className="border px-6 py-3 rounded-md">
+            Latest News
+          </Link>
         </div>
+
+        <p className="text-sm text-gray-500 mt-8">
+          Check out our latest platform updates and improvements.
+        </p>
       </div>
     </div>
   );
